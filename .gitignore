@@ -1,0 +1,20 @@
+# ---------- DIRECTORIES
+
+.idea/
+Builds/
+cmake-build*
+
+
+# ---------- FILES
+
+*.log
+companyInfo.cmake
+definePathConfig.json
+
+# ---------- HIDDEN FILES
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
