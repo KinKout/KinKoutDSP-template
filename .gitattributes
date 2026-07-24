@@ -1,0 +1,16 @@
+# Auto-detected text files
+* text=auto eol=lf
+
+# Force native line endings
+*.bat     text eol=crlf
+*.command text eol=lf
+
+# Assets used in this project (images, audio, fonts)
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.icns binary
+*.wav  binary
+*.aiff binary
+*.ttf  binary
+*.otf  binary

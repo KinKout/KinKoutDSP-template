@@ -37,6 +37,11 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 
 ## Layout
 
+    assets/                         user raw binary data split into 4 categories
+      audio/
+      data/
+      fonts/
+      images/
     cmake_config/
       cmake_presets/                per-platform CMake presets
       modules_settings/             JUCE, KinKout and custom module lists

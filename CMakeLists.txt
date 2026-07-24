@@ -340,6 +340,45 @@ else()
 endif()
 
 
+# INCLUDE BINARY DATA (assets folder)
+# ---------------------------------------------------------- Check & add binary files
+message(STATUS "Check and adding binary files...")
+
+set(_A "assets")
+set(_ASSETS_PATH "${_THIS_DIR}/${_A}")
+
+# Add here the new asset formats supported by the project
+# Remember to add only the BINARY formats in .gitattributes to avoid corruption
+file(GLOB_RECURSE _BINARY_FILES CONFIGURE_DEPENDS
+        # ------------------ BINARY files
+        # Image files
+        "${_A}/*.png"
+        "${_A}/*.jpg"
+
+        # Font files
+        "${_A}/*.ttf"
+        "${_A}/*.otf"
+
+        # Audio files
+        "${_A}/*.wav"
+        "${_A}/*.aiff"
+
+        # ------------------ TEXT files
+        "${_A}/*.svg"
+        "${_A}/*.json"
+        "${_A}/*.xml"
+)
+
+list(LENGTH _BINARY_FILES _BINARY_COUNT)
+if(_BINARY_COUNT GREATER 0)
+    set(_BINARY_LIST ${_PROJECT_NAME}_BinaryData)
+    juce_add_binary_data(${_BINARY_LIST} SOURCES ${_BINARY_FILES})
+    message("\t\t    >>> BinaryData: ${_BINARY_COUNT} assets loaded\n")
+else()
+    message(WARNING "No BinaryData found, skipping.")
+endif()
+
+
 # INCLUDE SOURCE FILES
 # -------------------------------------------------------------------------------- Check & add source files
 message(STATUS "Check and adding source files...\n")
