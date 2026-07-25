@@ -43,6 +43,11 @@ PLATFORM_CONFIG = {
         "app_name": "clion64.exe",
         "sub_path": "",
     },
+    "Linux": {
+        "platform_name": "linux",
+        "app_name": "clion",
+        "sub_path": "",
+    },
 }
 
 # --------------------- ! ! ! Don't edit this section ! ! ! ----------------------

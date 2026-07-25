@@ -44,8 +44,11 @@ if(APPLE)
 elseif (WIN32)
     set(_SYSTEM_NAME "WIN32")
     set(_BUILD_PATH "${_THIS_DIR}/builds/windows")
+elseif (UNIX AND NOT APPLE)
+    set(_SYSTEM_NAME "LINUX")
+    set(_BUILD_PATH "${_THIS_DIR}/builds/linux")
 else()
-    message(FATAL_ERROR "Unsupported platform! Only macOS and Windows are currently supported.")
+    message(FATAL_ERROR "Unsupported platform!")
 endif ()
 
 
@@ -443,6 +446,15 @@ juce_add_plugin(
 )
 
 juce_generate_juce_header(${_PROJECT_NAME})
+
+
+# ================================================================================
+# LV2 WRAPPER
+# ================================================================================
+
+set_target_properties("${_PROJECT_NAME}_LV2" PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY_DEBUG   "${_BUILD_PATH}/debug/${_PROJECT_NAME}.lv2"
+        LIBRARY_OUTPUT_DIRECTORY_RELEASE "${_BUILD_PATH}/release/${_PROJECT_NAME}.lv2")
 
 
 # ================================================================================

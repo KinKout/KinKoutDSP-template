@@ -37,6 +37,10 @@ elseif(WIN32)
     string(JSON _JUCE_PATH GET ${_PATHS_JSON} windows juce)
     string(JSON _KKML_PATH GET ${_PATHS_JSON} windows kkmoduleslib)
     string(JSON _CSTM_PATH GET ${_PATHS_JSON} windows custommodules)
+elseif(UNIX AND NOT APPLE)
+    string(JSON _JUCE_PATH GET ${_PATHS_JSON} linux juce)
+    string(JSON _KKML_PATH GET ${_PATHS_JSON} linux kkmoduleslib)
+    string(JSON _CSTM_PATH GET ${_PATHS_JSON} linux custommodules)
 endif()
 
 

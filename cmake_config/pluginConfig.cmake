@@ -44,7 +44,7 @@ set(_IS_MIDI_EFFECT FALSE)
 
 # -------------------------------------------------------------------------------- Formats
 # *** e.g. -> set(_PLUGIN_FORMATS "first, second, third, etc.")
-set(_PLUGIN_FORMATS "AU, VST3, Standalone")
+set(_PLUGIN_FORMATS "AU, VST3, LV2, Standalone")
 
 # -------------------------------------------------------------------------------- Copy plugin
 # Copy the plugins on default system folders after the build

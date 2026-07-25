@@ -2,14 +2,14 @@
 
 A CMake starting point for JUCE audio plugins.
 
-Born out of a simple need: stop rebuilding the same build system from scratch for every plugin. Set four config files, double-click a launcher, and the project opens in CLion ready to build on either macOS or Windows. (Linux not compatible yet, this feature is in TODO)
+Born out of a simple need: stop rebuilding the same build system from scratch for every plugin. Set four config files, double-click a launcher, and the project opens in CLion ready to build on either macOS, Windows, and Linux.
 
 ## What it does
 
 - **One place to configure everything** — company data, plugin name, code, formats, categories and module lists all live in `cmake_config/`
 - **Validates before it builds** — manufacturer/plugin codes are checked against the 4-character rule, formats and categories against the valid lists, JUCE against its actual location. Errors say what is wrong and how to fix it
 - **Generates the source files** — on first configure, `PluginProcessor` and `PluginEditor` are created from the templates in `source/template/`, stamped with the plugin name. Existing files are never overwritten
-- **Cross-platform without duplicating the project** — the launcher detects the OS, swaps in the matching CMake preset and opens CLion. The same project folder can live on a synced drive and build on both machines
+- **Cross-platform without duplicating the project** — the launcher detects the OS, swaps in the matching CMake preset and opens CLion. The same project folder can live on a synced drive and build on several machines
 - **Build summary** — every configure ends with a full report: company info, plugin settings, paths, source files, assets, module status
 
 ## Minimum Requirements
@@ -25,15 +25,20 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 1. Go to `cmake_config` folder.
 2. Duplicate `definePathConfigExample.json` and rename it `definePathConfig.json`. Here you can set your local JUCE and CLion paths.
 3. Duplicate `companyInfoExample.cmake` and rename it `companyInfo.cmake`. Here you can set your company data.
-4. Edit `pluginConfig.cmake` with your plugin name, version, description, formats and categories
-5. Now on `root` folder, double-click `OpenProject_Mac.command` (macOS) or `OpenProject_Win.bat` (Windows).*
-6. Configure and build in CLion. On first startup, Clion asks for building profiles. Disable `Debug` profile (default CLion profile) and enable the profile needed from: `macos-debug`, `macos-release` on macOS and `windows-debug`, `windows-release` on Windows.
-
+4. Edit `pluginConfig.cmake` with your plugin name, version, description, formats and categories.
+5. In the `root` folder, double-click:
+ - `OpenProject_Mac.command`* on macOS,
+ - `OpenProject_Win.bat`* on Windows,
+ - `OpenProject_Linux.sh`* on Linux. *(needs to be run manually)*
+6. Configure and build in CLion. On first startup, and every time the platform changes, CLion asks which build profile to use. Disable the `Debug` profile *(default CLion profile)* and enable the profile shown based on the system:
+ - `macos-debug`, `macos-release` on macOS,
+ - `windows-debug`, `windows-release` on Windows,
+ - `linux-debug`, `linux-release` on Linux.
 
 > Both `definePathConfig.json` and `companyInfo.cmake` are gitignored: they
 > hold personal specific data and stay out of version control.
 >
->  **These two commands open the same `OpenInCLion.py` script which manages: the different paths of different platform, the CLion build settings on `CMakePresets.json` and the automatic opening of CLion*
+>  **These commands open the same `OpenInCLion.py` script which manages: the different paths of different platform, the CLion build settings on `CMakePresets.json` and the automatic opening of CLion*
 
 ## Layout
 
@@ -53,8 +58,10 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
     source/
       template/                     source templates used at first configure
     OpenInCLion.py                  platform detection, preset sync, CLion launch
+    OpenProject_Linux.sh            Linux launcher
     OpenProject_Mac.command         macOS launcher
     OpenProject_Win.bat             Windows launcher
+
 
 ## Notes
 
