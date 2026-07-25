@@ -18,7 +18,7 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 - [JUCE 8](https://juce.com/download/) installed locally (not bundled)
 - CLion 2025
 - Python 3.10+
-- macOS 11+ / Windows 10+ (tested on 11)
+- macOS 11+ / Windows 10+ (tested on 11) / Linux (tested on Mint 22.1 Cinnamon)
 
 ## Setup
 
