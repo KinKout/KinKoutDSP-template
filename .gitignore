@@ -1,12 +1,13 @@
 # ---------- DIRECTORIES
 
 .idea/
-Builds/
+builds/
 cmake-build*
 
 
 # ---------- FILES
 
+TODO.txt
 *.log
 companyInfo.cmake
 definePathConfig.json
