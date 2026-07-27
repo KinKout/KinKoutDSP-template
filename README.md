@@ -6,9 +6,9 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 
 ## What it does
 
-- **One place to configure everything** — company data, plugin name, code, formats, categories and module lists all live in `cmake_config/`
+- **One place to configure everything** — company data, plugin name, code, formats, categories and module lists all live in `_cmake-config/`
 - **Validates before it builds** — manufacturer/plugin codes are checked against the 4-character rule, formats and categories against the valid lists, JUCE against its actual location. Errors say what is wrong and how to fix it
-- **Generates the source files** — on first configure, `PluginProcessor` and `PluginEditor` are created from the templates in `source/template/`, stamped with the plugin name. Existing files are never overwritten
+- **Generates the source files** — on first configure, `PluginProcessor` and `PluginEditor` are created from the templates in `_cmake-config/template/`, stamped with the plugin name. Existing files are never overwritten
 - **Cross-platform without duplicating the project** — the launcher detects the OS, swaps in the matching CMake preset and opens CLion. The same project folder can live on a synced drive and build on several machines
 - **Build summary** — every configure ends with a full report: company info, plugin settings, paths, source files, assets, module status
 
@@ -22,7 +22,7 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 
 ## Setup
 
-1. Go to `cmake_config` folder.
+1. Go to `_cmake-config/` folder.
 2. Duplicate `definePathConfigExample.json` and rename it `definePathConfig.json`. Here you can set your local JUCE and CLion paths.
 3. Duplicate `companyInfoExample.cmake` and rename it `companyInfo.cmake`. Here you can set your company data.
 4. Edit `pluginConfig.cmake` with your plugin name, version, description, formats and categories.
