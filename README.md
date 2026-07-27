@@ -42,21 +42,27 @@ Born out of a simple need: stop rebuilding the same build system from scratch fo
 
 ## Layout
 
+    _cmake-config/
+      cmake-presets/                per-platform CMake presets
+      modules-settings/             JUCE, KinKout and custom module lists
+      notarisation/                 macOS notarisation
+      other-settings/               path reading, validation lists, source generation
+      template/                     source templates used at first configure
+      companyInfoExample.cmake      company data (duplicate and rename companyInfo.cmake)
+      definePathConfigExample.json  local paths (duplicate and rename definePathConfig.json)
+      pluginConfig.cmake            plugin name, code, version, formats, categories
+      
     assets/                         user raw binary data split into 4 categories
       audio/
       data/
       fonts/
       images/
-    cmake_config/
-      cmake_presets/                per-platform CMake presets
-      modules_settings/             JUCE, KinKout and custom module lists
-      other_settings/               path reading, validation lists, source generation
-      notarisation/                 macOS notarisation
-      companyInfoExample.cmake      company data (duplicate and rename companyInfo.cmake)
-      definePathConfigExample.json  local paths (duplicate and rename definePathConfig.json)
-      pluginConfig.cmake            plugin name, code, version, formats, categories
-    source/
-      template/                     source templates used at first configure
+      
+    source/                         main codes folder
+      assets-helper                 assets wrapper folder
+      
+    CMakeLists.txt                  the main cmake builder
+    CMakePresets.json               CLion builder preset based on platform
     OpenInCLion.py                  platform detection, preset sync, CLion launch
     OpenProject_Linux.sh            Linux launcher
     OpenProject_Mac.command         macOS launcher

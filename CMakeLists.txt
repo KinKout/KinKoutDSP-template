@@ -13,14 +13,14 @@
 
 cmake_minimum_required(VERSION 3.24)
 
-include(cmake_config/companyInfo.cmake)
-include(cmake_config/pluginConfig.cmake)
-include(cmake_config/modules_settings/juceModules.cmake)
-include(cmake_config/modules_settings/kkModulesLib.cmake)
-include(cmake_config/modules_settings/customModules.cmake)
-include(cmake_config/other_settings/formatAndCategoryLists.cmake)
-include(cmake_config/other_settings/pathConfig.cmake)
-include(cmake_config/notarisation/notarisation.cmake)
+include(_cmake-config/companyInfo.cmake)
+include(_cmake-config/pluginConfig.cmake)
+include(_cmake-config/modules-settings/juceModules.cmake)
+include(_cmake-config/modules-settings/kkModulesLib.cmake)
+include(_cmake-config/modules-settings/customModules.cmake)
+include(_cmake-config/other-settings/formatAndCategoryLists.cmake)
+include(_cmake-config/other-settings/pathConfig.cmake)
+include(_cmake-config/notarisation/notarisation.cmake)
 
 
 message("\n"
@@ -403,7 +403,7 @@ if(_SOURCE_COUNT GREATER_EQUAL 4)
     message("\t\t    >>> source files: ${_SOURCE_COUNT} files loaded\n")
 else()
     message(STATUS "No source files found, generating from templates...")
-    include(cmake_config/other_settings/createSource.cmake)
+    include(_cmake-config/other-settings/createSource.cmake)
     load_source_files()
     if(_SOURCE_COUNT LESS 4)
         message(FATAL_ERROR "Template generation failed, source/ still empty!")

@@ -15,7 +15,7 @@
 # ================================================================================
 
 # -------------------------------------------------------------------------------- Read paths.json
-set(_PATHS_JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/cmake_config/definePathConfig.json")
+set(_PATHS_JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/_cmake-config/definePathConfig.json")
  
 if(NOT EXISTS "${_PATHS_JSON_FILE}")
     message("\n\n\n"

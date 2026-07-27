@@ -9,7 +9,7 @@
 # Purpose:  - detect system platform
 #           - read CMakePresets.json
 #           - change CMakePresets.json based on platform if needed
-#           - read /cmake_config/definePathConfig.json
+#           - read /_cmake-config/definePathConfig.json
 #           - open CLion based on platform
 #
 # ================================================================================
@@ -57,8 +57,8 @@ SYSTEM = platform.system() # Capitalized, used in CMakePresets.json for CLion se
 ROOT = Path(__file__).parent.resolve()
 CMAKE_PRESETS_JSON = "CMakePresets.json"
 DEFINE_PATH_CONFIG_JSON = "definePathConfig.json"
-CMAKE_CONFIG_DIR = "cmake_config"
-CMAKE_PRESETS_DIR = "cmake_presets"
+CMAKE_CONFIG_DIR = "_cmake-config"
+CMAKE_PRESETS_DIR = "cmake-presets"
 
 CMAKE_PRESETS_JSON_PATH = ROOT / CMAKE_PRESETS_JSON
 CMAKE_CONFIG_PATH = ROOT / CMAKE_CONFIG_DIR
@@ -205,7 +205,7 @@ def get_clion_path() -> Path:
     if config is None:
         print_error(f"Key '{PLATFORM_NAME}' not found in definePathConfig.json.")
         print_warn(f"You can add the '{PLATFORM_NAME}' platform entry in '{DEFINE_PATH_CONFIG_PATH}'.")
-        print_warn(f"Go to {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/readme.md for more info.")
+        # print_warn(f"Go to {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/readme.md for more info.")
         exit_with_code(INVALID_DATA)
 
     clion_str = config.get("clion", "").strip()
@@ -227,7 +227,7 @@ def define_system_variables() -> None:
     if THIS_PLATFORM is None:
         print_error(f"Unsupported platform: '{SYSTEM}'.")
         print_warn(f"You can add the '{SYSTEM}' platform entry in 'PLATFORM_CONFIG'.")
-        print_warn(f"Go to {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/readme.md for more info.")
+        # print_warn(f"Go to {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/readme.md for more info.")
         exit_with_code(UNSUPPORTED_PLATFORM)
 
     PLATFORM_NAME = THIS_PLATFORM["platform_name"]

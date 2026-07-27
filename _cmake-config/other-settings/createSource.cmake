@@ -6,7 +6,7 @@
 # Author:   KinKout
 # Date:     11-May-2026
 #
-# Purpose:  Create source files from templates in source/template/ if not present.
+# Purpose:  Create source files from templates in /_cmake-config/template/ if not present.
 #           Uses configure_file() to replace @PLUGIN_NAME@ and @BUILD_DATE@.
 #
 # ================================================================================
@@ -15,7 +15,7 @@
 string(TIMESTAMP BUILD_DATE "%d-%b-%Y")
 set(PLUGIN_NAME ${_PROJECT_NAME})
  
-set(TEMPLATE_DIR "${CMAKE_SOURCE_DIR}/source/template")
+set(TEMPLATE_DIR "${CMAKE_SOURCE_DIR}/_cmake-config/template")
 set(SOURCE_DIR   "${CMAKE_SOURCE_DIR}/source")
  
 set(TEMPLATE_FILES

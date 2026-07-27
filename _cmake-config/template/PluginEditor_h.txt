@@ -1,0 +1,33 @@
+/*
+*
+* File:     PluginEditor.h
+* Date:     @BUILD_DATE@
+*
+* Plugin:   @PLUGIN_NAME@
+*
+*/
+
+
+#pragma once
+
+#include "PluginProcessor.h"
+
+
+//==============================================================================
+class @PLUGIN_NAME@AudioProcessorEditor  : public juce::AudioProcessorEditor
+{
+public:
+    @PLUGIN_NAME@AudioProcessorEditor (@PLUGIN_NAME@AudioProcessor&);
+    ~@PLUGIN_NAME@AudioProcessorEditor() override;
+
+    //==============================================================================
+    void paint (juce::Graphics&) override;
+    void resized() override;
+
+private:
+    // This reference is provided as a quick way for your editor to
+    // access the processor object that created it.
+    @PLUGIN_NAME@AudioProcessor& audioProcessor;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (@PLUGIN_NAME@AudioProcessorEditor)
+};
