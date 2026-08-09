@@ -21,9 +21,11 @@ ___
 - **One place to configure everything**
 Company data, plugin name, code, formats, categories and module lists all live in [_cmake-config][link_cmake-config] folder.
 <br>
+
 - **Validates before it builds**
 Manufacturer/plugin codes are checked against the 4-character rule, formats and categories against the valid lists, JUCE against its actual location. Errors say what is wrong and how to fix it.
 <br>
+
 - **Generates the source files**
 On first runs, `PluginProcessor.h/cpp`,`PluginEditor.h/cpp`, and the rest of the structure codes are created from the .txt templates files in [template][link_template] folder, stamped with the plugin name and build date.
 Existing files are never overwritten.
@@ -34,6 +36,7 @@ Existing files are never overwritten.
 The launcher detects the OS, swaps in the matching CMake preset settings and opens CLion.
 The same project folder can live on a synced drive and build on different platform machines. (one machine for each platform)
 <br>
+
 - **Build summary**
 Every CMake loading ends with a full report: company info, plugin settings, paths, source files, assets, module status etc.
 

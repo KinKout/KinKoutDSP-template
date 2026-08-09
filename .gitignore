@@ -12,6 +12,11 @@ TODO.txt
 companyInfo.cmake
 definePath.json
 
+# ---------- CODE
+
+PluginEditor.*
+PluginProcessor.*
+
 # ---------- HIDDEN FILES
 
 .DS_Store
