@@ -10,7 +10,7 @@ cmake-build*
 TODO.txt
 *.log
 companyInfo.cmake
-definePathConfig.json
+definePath.json
 
 # ---------- HIDDEN FILES
 

@@ -15,11 +15,11 @@ cmake_minimum_required(VERSION 3.24)
 
 include(_cmake-config/companyInfo.cmake)
 include(_cmake-config/pluginConfig.cmake)
+include(_cmake-config/_scripts/pathConfig.cmake)
+include(_cmake-config/modules-settings/_formatAndCategoryLists.cmake)
 include(_cmake-config/modules-settings/juceModules.cmake)
 include(_cmake-config/modules-settings/kkModulesLib.cmake)
 include(_cmake-config/modules-settings/customModules.cmake)
-include(_cmake-config/other-settings/formatAndCategoryLists.cmake)
-include(_cmake-config/other-settings/pathConfig.cmake)
 include(_cmake-config/notarisation/notarisation.cmake)
 
 
@@ -89,7 +89,7 @@ if(NOT _PLUGIN_MANUFACTURER_CODE MATCHES "^[A-Z][a-z][a-z][a-z]$")
     message(FATAL_ERROR "_PLUGIN_MANUFACTURER_CODE must be exactly 4 letters\n"
             "The first letter, uppercase [A-Z]\n"
             "the other 3, lowercase [a-z]\n"
-            "Exemple: Fila, Cuqo, Tiys")
+            "Example: Fila, Cuqo, Tiys")
 endif()
 
 # -------------------------------------------------------------------------------- Plugin Code:
@@ -99,7 +99,7 @@ if(NOT _PLUGIN_CODE MATCHES "^[A-Z][a-z][a-z][a-z]$")
     message(FATAL_ERROR "_PLUGIN_CODE must be must be exactly 4 letters\n"
             "The first letter, uppercase [A-Z]\n"
             "the other 3, lowercase [a-z]\n"
-            "Exemple: Curs, Shnt, Anfl")
+            "Example: Curs, Shnt, Anfl")
 endif()
 
 # -------------------------------------------------------------------------------- Print validated plugin codes
@@ -403,7 +403,7 @@ if(_SOURCE_COUNT GREATER_EQUAL 4)
     message("\t\t    >>> source files: ${_SOURCE_COUNT} files loaded\n")
 else()
     message(STATUS "No source files found, generating from templates...")
-    include(_cmake-config/other-settings/createSource.cmake)
+    include(_cmake-config/template/_createSource.cmake)
     load_source_files()
     if(_SOURCE_COUNT LESS 4)
         message(FATAL_ERROR "Template generation failed, source/ still empty!")

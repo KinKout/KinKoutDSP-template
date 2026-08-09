@@ -46,7 +46,7 @@ set(JUCE_CORE_SYSTEM_MODULES
 
 # -------------------------------------------------------------------------------- DSP modules
 set(JUCE_DSP_MODULES
-    juce::juce_dsp				        # DSP classes: filters, LFOs, FFT, delay lines, modulation
+    # juce::juce_dsp				        # DSP classes: filters, LFOs, FFT, delay lines, modulation
 )
 
 

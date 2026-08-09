@@ -6,23 +6,23 @@
 # Author:   KinKout
 # Date:     11-May-2026
 #
-# Purpose:  Reads definePathConfig.json and exposes path variables for use in CMakeLists.txt
+# Purpose:  Reads definePath.json and exposes path variables for use in CMakeLists.txt
 #
 # 							!!! Do NOT edit paths here !!!
 #
-# edit definePathConfig.json instead
+# edit definePath.json instead
 #
 # ================================================================================
 
 # -------------------------------------------------------------------------------- Read paths.json
-set(_PATHS_JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/_cmake-config/definePathConfig.json")
+set(_PATHS_JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/_cmake-config/definePath.json")
  
 if(NOT EXISTS "${_PATHS_JSON_FILE}")
     message("\n\n\n"
             "| =========================================================================== |\n"
             "|                                 BUILD FAILURE                               |\n"
             "| =========================================================================== |\n")
-    message(FATAL_ERROR "definePathConfig.json not found at ${_PATHS_JSON_FILE}\n\n")
+    message(FATAL_ERROR "definePath.json not found at ${_PATHS_JSON_FILE}\n\n")
 endif()
  
 file(READ "${_PATHS_JSON_FILE}" _PATHS_JSON)

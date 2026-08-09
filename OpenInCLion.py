@@ -9,7 +9,7 @@
 # Purpose:  - detect system platform
 #           - read CMakePresets.json
 #           - change CMakePresets.json based on platform if needed
-#           - read /_cmake-config/definePathConfig.json
+#           - read /_cmake-config/definePath.json
 #           - open CLion based on platform
 #
 # ================================================================================
@@ -31,7 +31,6 @@ from typing import NoReturn
 
 # ---------------------- Here you can add the new platforms ----------------------
 
-# ------------------------------------------- Linux is not supported at the moment
 PLATFORM_CONFIG = {
     "Darwin": {
         "platform_name": "darwin",
@@ -56,23 +55,23 @@ SYSTEM = platform.system() # Capitalized, used in CMakePresets.json for CLion se
 
 ROOT = Path(__file__).parent.resolve()
 CMAKE_PRESETS_JSON = "CMakePresets.json"
-DEFINE_PATH_CONFIG_JSON = "definePathConfig.json"
+DEFINE_PATH_JSON = "definePath.json"
 CMAKE_CONFIG_DIR = "_cmake-config"
-CMAKE_PRESETS_DIR = "cmake-presets"
+CMAKE_PRESETS_DIR = "platform-presets"
 
 CMAKE_PRESETS_JSON_PATH = ROOT / CMAKE_PRESETS_JSON
 CMAKE_CONFIG_PATH = ROOT / CMAKE_CONFIG_DIR
 CMAKE_PRESETS_PATH = ROOT / CMAKE_CONFIG_DIR / CMAKE_PRESETS_DIR
-DEFINE_PATH_CONFIG_PATH = ROOT / CMAKE_CONFIG_DIR / DEFINE_PATH_CONFIG_JSON
+DEFINE_PATH_PATH = ROOT / CMAKE_CONFIG_DIR / DEFINE_PATH_JSON
 
 THIS_PLATFORM = PLATFORM_CONFIG.get(SYSTEM)
-PLATFORM_NAME = "" # Lowercase, used in definePathConfig.json
+PLATFORM_NAME = "" # Lowercase, used in definePath.json
 CLION_APP_NAME = ""
 CLION_SUB_PATH = ""
 CLION_PATH = ""
 
 GITHUB_URL = "https://github.com/KinKout/KinKoutDSP-template"
-GITHUB_MAIN = "/blob/main/"
+GITHUB_MAIN = "/tree/main/"
 
 J_PATH_CONFIG = {}
 J_CMAKE_PRESETS = {}
@@ -203,8 +202,8 @@ def get_clion_path() -> Path:
 
     config = J_PATH_CONFIG.get(PLATFORM_NAME)
     if config is None:
-        print_error(f"Key '{PLATFORM_NAME}' not found in definePathConfig.json.")
-        print_warn(f"You can add the '{PLATFORM_NAME}' platform entry in '{DEFINE_PATH_CONFIG_PATH}'.")
+        print_error(f"Key '{PLATFORM_NAME}' not found in definePath.json.")
+        print_warn(f"You can add the '{PLATFORM_NAME}' platform entry in '{DEFINE_PATH_PATH}'.")
         # print_warn(f"Go to {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/readme.md for more info.")
         exit_with_code(INVALID_DATA)
 
@@ -246,8 +245,8 @@ def read_files() -> None:
 
     print_section("Reading files...")
 
-    J_PATH_CONFIG = read_json(DEFINE_PATH_CONFIG_PATH)
-    print_ok("definePathConfig.json")
+    J_PATH_CONFIG = read_json(DEFINE_PATH_PATH)
+    print_ok("definePath.json")
 
     J_CMAKE_PRESETS = read_json(CMAKE_PRESETS_JSON_PATH)
     print_ok("CMakePresets.json")
@@ -263,10 +262,10 @@ def control_paths() -> None:
         print_warn(f"or download the whole template project from {GITHUB_URL}")
         exit_with_code(DATA_NOT_FOUND)
     
-    # Control definePathConfig.json
-    if not DEFINE_PATH_CONFIG_PATH.exists():
-        print_error(f"File not found: '{DEFINE_PATH_CONFIG_JSON}' in '{CMAKE_CONFIG_PATH}'")
-        print_warn(f"KinKoutDSP-template is corrupted. Re-download '{DEFINE_PATH_CONFIG_JSON}' from {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/{DEFINE_PATH_CONFIG_JSON}")
+    # Control definePath.json
+    if not DEFINE_PATH_PATH.exists():
+        print_error(f"File not found: '{DEFINE_PATH_JSON}' in '{CMAKE_CONFIG_PATH}'")
+        print_warn(f"KinKoutDSP-template is corrupted. Re-download '{DEFINE_PATH_JSON}' from {GITHUB_URL}{GITHUB_MAIN}{CMAKE_CONFIG_DIR}/{DEFINE_PATH_JSON}")
         exit_with_code(DATA_NOT_FOUND)
     
     # Control CMakePresets folder

@@ -2,11 +2,11 @@
 # Create main source files
 # ================================================================================
 #
-# File:     createSource.cmake
+# File:     _createSource.cmake
 # Author:   KinKout
 # Date:     11-May-2026
 #
-# Purpose:  Create source files from templates in /_cmake-config/template/ if not present.
+# Purpose:  Create source files from templates .txt in /_cmake-config/template/.
 #           Uses configure_file() to replace @PLUGIN_NAME@ and @BUILD_DATE@.
 #
 # ================================================================================

@@ -2,7 +2,7 @@
 # Format and category lists
 # ================================================================================
 #
-# File:     formatAndCategoryLists.cmake
+# File:     _formatAndCategoryLists.cmake
 # Author:   KinKout
 # Date:     11-May-2026
 #
