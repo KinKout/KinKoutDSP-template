@@ -30,9 +30,9 @@
 
 
 # -------------------------------------------------------------------------------- Info
-set(_PROJECT_NAME "MyNewPlugin") # !!! NO whitespace !!!
-set(_PRODUCT_NAME "My New Plugin") # The name displayed in the DAW
-set(_DESCRIPTION "Something magna with elit something, officia something lorem ipsum with dolor and laboris commodo.")
+set(_PROJECT_NAME "MyNewPlugin") # !!! NO whitespace !!! - max 30 characters
+set(_PRODUCT_NAME "My New Plugin") # The name displayed in the DAW - max 30 characters
+set(_DESCRIPTION "Something magna with elit something, officia something lorem ipsum with dolor and laboris commodo.") # max 255 characters
 set(_PLUGIN_CODE "Mnpg") # WARNING !!!
 set(_VERSION 1.0.0)
 

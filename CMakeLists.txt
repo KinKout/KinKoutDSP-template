@@ -12,7 +12,14 @@
 
 
 cmake_minimum_required(VERSION 3.24)
+set(_THIS_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+message("\n"
+        "| =========================================================================== |\n"
+        "|                                START BUILDING                               |\n"
+        "| =========================================================================== |\n\n")
+
+# -------------------------------------------------------------------------------- Includes
 include(_cmake-config/companyInfo.cmake)
 include(_cmake-config/pluginConfig.cmake)
 include(_cmake-config/_scripts/pathConfig.cmake)
@@ -22,15 +29,18 @@ include(_cmake-config/modules-settings/kkModulesLib.cmake)
 include(_cmake-config/modules-settings/customModules.cmake)
 include(_cmake-config/notarisation/notarisation.cmake)
 
+message(STATUS "Include files loaded\n")
 
-message("\n"
-        "| =========================================================================== |\n"
-        "|                             INCLUDE FILE LOADED                             |\n"
-        "| =========================================================================== |")
-        
-        
-# -------------------------------------------------------------------------------- Folders
-set(_THIS_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+# ================================================================================
+# BUILD FAILURE MESSAGE
+# ================================================================================
+
+function(build_failure_msg)
+    message("\n\n\n"
+            "| =========================================================================== |\n"
+            "|                                 BUILD FAILURE                               |\n"
+            "| =========================================================================== |\n\n")
+endfunction()
 
 # ================================================================================
 # PLATFORM DETECTION AND SETUP
@@ -48,43 +58,32 @@ elseif (UNIX AND NOT APPLE)
     set(_SYSTEM_NAME "LINUX")
     set(_BUILD_PATH "${_THIS_DIR}/builds/linux")
 else()
+    build_failure_msg()
     message(FATAL_ERROR "Unsupported platform!")
-endif ()
+endif()
 
-
-message("| =========================================================================== |\n"
-        "|                                ${_SYSTEM_NAME} DETECTED                               |\n"
-        "| =========================================================================== |")
-
+message(STATUS "Platform detected: ${_SYSTEM_NAME}\n")
 
 # ================================================================================
-# Init build with the name of product
+# PROJECT NAME, PRODUCT NAME, DESCRIPTION, AND VERSION VALIDATION
+# ================================================================================
 
-message("| =========================================================================== |\n"
-        "|                               BUILD IS RUNNING                              |\n"
-        "| =========================================================================== |\n")
+include(_cmake-config/_scripts/stringControl.cmake)
 
-message(STATUS "${_PRODUCT_NAME}")
-message("\n\t\twill now be built...\n\n")
-
+message(STATUS
+        "Building:\n"
+        "\t-> Project mame: ${_PROJECT_NAME}\n"
+        "\t-> Product name: ${_PRODUCT_NAME}\n"
+        "\t-> Version: ${_VERSION}\n")
 
 # ================================================================================
-# Failure message function 
-function(build_failure_msg)
-    message("\n\n\n"
-            "| =========================================================================== |\n"
-            "|                                 BUILD FAILURE                               |\n"
-            "| =========================================================================== |\n\n")
-endfunction()
-
-
-# ================================================================================
-# MANUFACTURER / PLUGIN NAMES VALIDATION
+# MANUFACTURER / PLUGIN CODE VALIDATION
 # ================================================================================
 
 # -------------------------------------------------------------------------------- Manufacturer Code:
 # -------------------------------------------------------------------------------- 4 characters, fist uppercase, the rest lowercase
-if(NOT _PLUGIN_MANUFACTURER_CODE MATCHES "^[A-Z][a-z][a-z][a-z]$")
+set(_CODE_REGEX "^[A-Z][a-z][a-z][a-z]$")
+if(NOT _PLUGIN_MANUFACTURER_CODE MATCHES ${_CODE_REGEX})
     build_failure_msg()
     message(FATAL_ERROR "_PLUGIN_MANUFACTURER_CODE must be exactly 4 letters\n"
             "The first letter, uppercase [A-Z]\n"
@@ -94,7 +93,7 @@ endif()
 
 # -------------------------------------------------------------------------------- Plugin Code:
 # -------------------------------------------------------------------------------- 4 characters, fist uppercase, the rest lowercase
-if(NOT _PLUGIN_CODE MATCHES "^[A-Z][a-z][a-z][a-z]$")
+if(NOT _PLUGIN_CODE MATCHES ${_CODE_REGEX})
     build_failure_msg()
     message(FATAL_ERROR "_PLUGIN_CODE must be must be exactly 4 letters\n"
             "The first letter, uppercase [A-Z]\n"
