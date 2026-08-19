@@ -385,30 +385,16 @@ endif()
 # -------------------------------------------------------------------------------- Check & add source files
 message(STATUS "Check and adding source files...\n")
 
-set(_S "source")
-set(_SOURCE_PATH "${_THIS_DIR}/${_S}")
+include(_cmake-config/_scripts/createSourceTemplate.cmake)
 
-macro(load_source_files)
-    file(GLOB_RECURSE _SOURCE_FILES
-        "${_S}/*.cpp"
-        "${_S}/*.h"
-    )
-    list(LENGTH _SOURCE_FILES _SOURCE_COUNT)
-endmacro()
+file(GLOB_RECURSE _SOURCE_FILES
+        "source/*.cpp"
+        "source/*.h"
+)
 
-load_source_files()
+list(LENGTH _SOURCE_FILES _SOURCE_COUNT)
 
-if(_SOURCE_COUNT GREATER_EQUAL 4)
-    message("\t\t    >>> source files: ${_SOURCE_COUNT} files loaded\n")
-else()
-    message(STATUS "No source files found, generating from templates...")
-    include(_cmake-config/template/_createSource.cmake)
-    load_source_files()
-    if(_SOURCE_COUNT LESS 4)
-        message(FATAL_ERROR "Template generation failed, source/ still empty!")
-    endif()
-    message("\t\t    >>> source files: ${_SOURCE_COUNT} files created\n")
-endif()
+message("\t\t    >>> source files: ${_SOURCE_COUNT} files loaded\n")
 
 # ================================================================================
 # PLUGIN CONFIGURATION
