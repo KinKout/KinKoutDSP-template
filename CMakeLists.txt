@@ -383,18 +383,30 @@ endif()
 
 # INCLUDE SOURCE FILES
 # -------------------------------------------------------------------------------- Check & add source files
-message(STATUS "Check and adding source files...\n")
+message(STATUS "Check template source files...")
 
 include(_cmake-config/_scripts/createSourceTemplate.cmake)
 
+message(STATUS "Scan \"source\" folder to find user source files...")
+
+set(_S "source")
 file(GLOB_RECURSE _SOURCE_FILES
-        "source/*.cpp"
-        "source/*.h"
+        "${_S}/*.cpp"
+        "${_S}/*.h"
 )
 
-list(LENGTH _SOURCE_FILES _SOURCE_COUNT)
+list(SORT _SOURCE_FILES)
+foreach(_SF ${_SOURCE_FILES})
+    file(RELATIVE_PATH _REL_PATH ${_THIS_DIR} ${_SF})
+    message("\t-> ${_REL_PATH}")
+endforeach()
 
-message("\t\t    >>> source files: ${_SOURCE_COUNT} files loaded\n")
+list(LENGTH _SOURCE_FILES _SOURCE_COUNT)
+math(EXPR _N_USER_SOURCE "${_SOURCE_COUNT} - ${_N_TEMPLATE_LOADED}")
+
+message("\n\t>>> source files: ${_N_TEMPLATE_LOADED} template files loaded")
+message("\t                  ${_N_USER_SOURCE} user files loaded\n")
+message("\t>>> tot. source files: ${_SOURCE_COUNT} files loaded\n")
 
 # ================================================================================
 # PLUGIN CONFIGURATION
@@ -553,7 +565,8 @@ message(STATUS "PATHS")
 message("\t\t-> Project Root                :${_THIS_DIR}")
 message("\t\t-> Build                       :${_BUILD_PATH}")
 message("\t\t-> CMake                       :${CMAKE_BINARY_DIR}")
-message("\t\t-> Source                      :${_SOURCE_PATH}")
+message("\t\t-> Source                      :${_THIS_DIR}/${_S}")
+message("\t\t-> Assets                      :${_ASSETS_PATH}")
 message("\t\t-> JUCE Path                   :${_JUCE_PATH}")
 message("\t\t-> KinKout Modules             :${_KKML_PATH}")
 message("\t\t-> Custom Modules              :${_CSTM_PATH}")
